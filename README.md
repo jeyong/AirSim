@@ -26,11 +26,11 @@ AirSim을 이용한 Car
 ## 시작하기
 
 ### Windows
-* [Download binaries](docs/use_precompiled.md)
-* [Build it](docs/build_windows.md)
+* [바이너리 다운받기](docs/use_precompiled.md)
+* [빌드하기](docs/build_windows.md)
 
 ### Linux
-* [Build it](docs/build_linux.md)
+* [빌드하기](docs/build_linux.md)
 
 ## 사용법
 
@@ -52,8 +52,7 @@ AirSim을 이용한 Car
 
 AirSim은 프로그램으로 시뮬레이션의 기체와 상호동작시킬 수 있는 API를 제공한다. 이 API를 이용해서 image, 상태 추출 및 기체 제어 등이 가능하다. API는 RPC를 통해 제공되고 다양한 언어를 통해 접근이 가능하다. (C++, Python, C#, Java 등)
 
-
-These APIs are also available as part of a separate, independent cross-platform library, so you can deploy them on a companion computer on your vehicle. This way you can write and test your code in the simulator, and later execute it on the real vehicles. Transfer learning and related research is one of our focus areas.
+이 API는 별도의 독립 크로스-플랫폼 라이브러리의 일부로 가능하므로 기체에 있는 컴패니온 컴퓨터에 넣을 수 있다. 이런 방식으로 시뮬레이터에 코드를 작성하고 테스트할 수 있고 나중에 실제 기체에서 실행할 수 있다. 학습을 전이시키고 관련된 연구가 집중하고 있는 분야 중에 하나다.
 
 [More details](docs/apis.md)
 
@@ -84,7 +83,7 @@ AirSim을 사용하는 다른 방식은 소위 "Computer Vision" 모드이다. �
 
 ### Paper
 
-More technical details are available in [AirSim paper (FSR 2017 Conference)](https://arxiv.org/abs/1705.05065). Please cite this as:
+기술적 상세 내용 : [AirSim paper (FSR 2017 Conference)](https://arxiv.org/abs/1705.05065). Please cite this as:
 ```
 @inproceedings{airsim2017fsr,
   author = {Shital Shah and Debadeepta Dey and Chris Lovett and Ashish Kapoor},
