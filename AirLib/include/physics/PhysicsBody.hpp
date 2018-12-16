@@ -13,6 +13,14 @@
 #include <unordered_set>
 #include <exception>
 
+/*
+wrench
+restitution : 복원
+friction : 마찰
+
+collision 정보
+
+*/
 namespace msr { namespace airlib {
 
 class PhysicsBody : public UpdatableObject {

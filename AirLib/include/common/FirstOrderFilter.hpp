@@ -14,15 +14,18 @@ namespace msr { namespace airlib {
 template <typename T>
 class FirstOrderFilter : UpdatableObject {
     /*
+    1차 필터 적용을 위한 class
+    가속/감속 시간 상수
     This class can be used to apply a first order filter on a signal.
     It allows different acceleration and deceleration time constants.
 
+    1차 시스템의 비연속 시간 구현 (라플라스)
     Short review of discrete time implementation of first order system:
     Laplace:
     X(s)/U(s) = 1/(tau*s + 1)
-    continuous time system:
+    continuous time system:  //연속 시간 시스템
     dx(t) = (-1/tau)*x(t) + (1/tau)*u(t)
-    discretized system (ZoH):
+    discretized system (ZoH):  //비연속 시스템
     x(k+1) = exp(samplingTime*(-1/tau))*x(k) + (1 - exp(samplingTime*(-1/tau))) * u(k)
     */
 public:

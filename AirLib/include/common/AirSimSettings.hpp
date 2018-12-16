@@ -14,6 +14,33 @@
 #include "ImageCaptureBase.hpp"
 #include "sensors/SensorBase.hpp"
 
+/*
+AirSim 설정
+ * vehicle type
+ * subwindows (?)
+ * recording 설정
+ * Pawn path
+ * RC 설정
+ * Rotation
+ * Gimbal 설정
+ * capture 설정
+ * Noise 설정
+ * 카메라 설정
+ * camera drector 설정
+ * sensor 설정
+ * barometer 설정
+ * Imu 설정
+ * gps 설정
+ * mag 설정
+ * distance 설정
+ * lidar 설정
+ * vehicle 설정
+ * mavlink 연결 정보
+ * mavlink vehicle 설정
+ * segmentation 설정 (?)
+ * timeofday 설정
+*/
+
 namespace msr { namespace airlib {
 
 struct AirSimSettings {
@@ -357,6 +384,11 @@ public: //methods
 
     AirSimSettings()
     {
+        /*
+            subwindows 초기화
+            pawn path 초기화
+            vehicle 설정 초기화
+        */
         initializeSubwindowSettings(subwindow_settings);
         initializePawnPaths(pawn_paths);
         initializeVehicleSettings(vehicles);

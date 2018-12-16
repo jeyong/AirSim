@@ -11,6 +11,14 @@
 namespace msr { namespace airlib {
 
 /*
+UpdatableObject는 "ticked"이 있는 객체에 대한 일반적인 framework.
+10ms마다 position을 업데이트하는 physics object가 여기에 해당할 수 있다. 
+이런 객체들은 state를 가지는데, 매 tick마다 계산을 통해 새로운 state를 가진다.
+reset()은 원래 상태로 돌리는 rollback을 제공. 
+
+객체가 생성되고 초기화된 후에, update()가 호출되기 전에 reset()이 호출되어야만 한다. 
+reset()은 생성자에 초기화 단계에서 호출하지 않는다. init->reset의 순서로 호출되는 것은 올바르지 않음.
+
 UpdatableObject provides generalized framework for things that needs to be "ticked". For example,
 physics objects that needs to update its position every 10ms.
 Typically this objects will take their current state, do some processing and produce new state

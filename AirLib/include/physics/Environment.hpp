@@ -11,6 +11,12 @@
 
 namespace msr { namespace airlib {
 
+/*
+물리 환경 :
+ * State (position, geopoint, 중력, 공기압, 온도, 공기밀도)
+ * Geo Point
+*/
+
 class Environment : public UpdatableObject {
 public:
     struct State {

@@ -14,7 +14,7 @@ https://github.com/mourner/suncalc
 
 namespace msr { namespace airlib {
 
-
+// 지구 전체. 지구와 태양과 달 표시
 class EarthCelestial {
 public:
 
