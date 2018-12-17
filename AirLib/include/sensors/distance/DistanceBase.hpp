@@ -7,6 +7,9 @@
 
 #include "sensors/SensorBase.hpp"
 
+/*
+거리, 최소 거리, 최대 거리, relative_pose
+*/
 
 namespace msr { namespace airlib {
 

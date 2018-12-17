@@ -19,7 +19,7 @@ public:
 
 public: //types
     //TODO: cleanup GPS structures that are not needed
-    struct GpsPoint {
+    struct GpsPoint {  //위도, 경도, 고도, 상태 
     public:    
         double latitude, longitude;
         float height, altitude;

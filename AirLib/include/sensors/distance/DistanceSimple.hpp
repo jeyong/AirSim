@@ -19,13 +19,14 @@ public:
     DistanceSimple(const AirSimSettings::DistanceSetting& setting = AirSimSettings::DistanceSetting())
         : DistanceBase(setting.sensor_name)
     {
+		// params 초기화
         // initialize params
         params_.initializeFromSettings(setting);
 
         uncorrelated_noise_ = RandomGeneratorGausianR(0.0f, params_.unnorrelated_noise_sigma);
         //correlated_noise_.initialize(params_.correlated_noise_tau, params_.correlated_noise_sigma, 0.0f);
 
-
+		// freq limiter를 초기화
         //initialize frequency limiter
         freq_limiter_.initialize(params_.update_frequency, params_.startup_delay);
         delay_line_.initialize(params_.update_latency);
@@ -78,9 +79,11 @@ private: //methods
         Output output;
         const GroundTruth& ground_truth = getGroundTruth();
 
+		// Pose 추가의 순서가 여기서 중요. 왜냐하면 교환 법칙이 적용되지 않는 quaternions를 추가하기 때문에
         //order of Pose addition is important here because it also adds quaternions which is not commutative!
         auto distance = getRayLength(params_.relative_pose + ground_truth.kinematics->pose);
 
+		// distance에 noise를 추가
         //add noise in distance (about 0.2m sigma)
         distance += uncorrelated_noise_.next();
 

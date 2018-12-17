@@ -6,6 +6,13 @@
 
 #include "common/Common.hpp"
 
+/*
+	mag센서가 사용하는 parameter 정보
+	 * noise_sigma
+	 * scale_factor
+	 * noise_bias
+	 * freq
+*/
 
 namespace msr { namespace airlib {
 

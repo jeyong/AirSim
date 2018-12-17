@@ -18,9 +18,11 @@ public:
     LidarSimple(const AirSimSettings::LidarSetting& setting = AirSimSettings::LidarSetting())
         : LidarBase(setting.sensor_name)
     {
+		// params 초기화
         // initialize params
         params_.initializeFromSettings(setting);
 
+		// freq limiter 초기화
         //initialize frequency limiter
         freq_limiter_.initialize(params_.update_frequency, params_.startup_delay);
     }
@@ -80,10 +82,13 @@ private: //methods
 
         const GroundTruth& ground_truth = getGroundTruth();
 
+		// point-cloud 얻기 전에 pose를 계산.
+		// point-cloud 얻는 동안 pose가 변경되면, 해당 pose는 매우 정확하지는 않게 된다.
         // calculate the pose before obtaining the point-cloud. Before/after is a bit arbitrary
         // decision here. If the pose can change while obtaining the point-cloud (could happen for drones)
         // then the pose won't be very accurate either way.
         //
+		// TODO: pose는 vehicle inertial-frame 내부(Global NED frame이 아니라)
         // TODO: Seems like pose is in vehicle inertial-frame (NOT in Global NED frame).
         //    That could be a bit unintuitive but seems consistent with the position/orientation returned as part of 
         //    ImageResponse for cameras and pose returned by getCameraInfo API.

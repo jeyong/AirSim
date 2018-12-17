@@ -9,7 +9,10 @@
 #include "common/UpdatableContainer.hpp"
 #include "common/Common.hpp"
 
-
+/*
+	sensor들을 보관하는 container로 insert로 추가가 가능.
+	update()를 통해 container에 포함된 모든 sensor들을 update 가능
+*/
 namespace msr { namespace airlib {
 
 class SensorCollection : UpdatableObject {

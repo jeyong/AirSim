@@ -6,7 +6,10 @@
 
 #include "common/Common.hpp"
 
+/*
+	GPS센서가 사용하는 parameter 정보
 
+*/
 namespace msr { namespace airlib {
 
 struct GpsSimpleParams {

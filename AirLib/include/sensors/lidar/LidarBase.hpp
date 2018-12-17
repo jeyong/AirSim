@@ -6,6 +6,12 @@
 
 #include "sensors/SensorBase.hpp"
 
+/*
+ output :
+  * time stamp
+  * relative pose
+  * point_cloud
+*/
 namespace msr { namespace airlib {
 
 class LidarBase : public SensorBase {
@@ -21,6 +27,7 @@ public: //types
         TTimePoint time_stamp;
         Pose relative_pose;
 
+		// 범위 내에 있는 각 point에 대한 x, y, z 좌표의 array
         // data
         // - array of floats that represent [x,y,z] coordinate for each point hit within the range
         //       x0, y0, z0, x1, y1, z1, ..., xn, yn, zn

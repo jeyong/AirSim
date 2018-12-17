@@ -7,6 +7,11 @@
 
 #include "sensors/SensorBase.hpp"
 
+/*
+	Ãâ·Â : 
+	magnetic_field_body
+	magnetic_field_covariance
+*/
 
 namespace msr { namespace airlib {
 

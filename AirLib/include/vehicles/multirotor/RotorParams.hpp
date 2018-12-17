@@ -7,6 +7,9 @@
 
 #include "common/Common.hpp"
 
+/*
+ 
+*/
 namespace msr {
     namespace airlib {
 
@@ -16,7 +19,9 @@ namespace msr {
             RotorTurningDirectionCCW = -1,
             RotorTurningDirectionCW = 1
         };
-
+		/*
+		air_density, max_rpm, props_diameter, props_height, signal_filter, 초당 revolution, 최대 속도(radian per second), max_thrust, max_torque
+		*/
         struct RotorParams {
             /*
             Ref: http://physics.stackexchange.com/a/32013/14061

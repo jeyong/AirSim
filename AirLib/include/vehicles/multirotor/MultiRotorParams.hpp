@@ -214,7 +214,7 @@ protected: //static utility functions for derived classes to use
 private:
     Params params_;
     SensorCollection sensors_; //maintains sensor type indexed collection of sensors
-    vector<unique_ptr<SensorBase>> sensor_storage_; //RAII for created sensors
+    vector<unique_ptr<SensorBase>> sensor_storage_; //RAII for created sensors // 리소스 release 보장하는 C++ idiom https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Resource_Acquisition_Is_Initialization
 };
 
 }} //namespace

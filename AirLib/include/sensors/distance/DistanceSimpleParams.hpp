@@ -7,7 +7,10 @@
 #include "common/Common.hpp"
 #include "common/AirSimSettings.hpp"
 
+/*
+	거리센서에서 사용하는 parameter 정보
 
+*/
 namespace msr { namespace airlib {
 
 
@@ -17,11 +20,13 @@ struct DistanceSimpleParams {
     Pose relative_pose;
 
 /*
+	기압계 고도의 Noise 모델링에 대한 통계적 접근 참고
     Ref: A Stochastic Approach to Noise Modeling for Barometric Altimeters
      Angelo Maria Sabatini* and Vincenzo Genovese
      Sample values are from Table 1
      https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3871085/
      This is however not used because numbers mentioned in paper doesn't match experiments.
+	 //이 논문에서 언급한 수는 실험과 일치하지 않으므로 사용하지 않는다.
 
      real_T correlated_noise_sigma = 0.27f;
      real_T correlated_noise_tau = 0.87f;

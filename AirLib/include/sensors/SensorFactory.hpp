@@ -12,12 +12,16 @@
 #include "sensors/gps/GpsSimple.hpp"
 #include "sensors/barometer/BarometerSimple.hpp"
 
+/*
+	setting 정보로부터 sensor 생성
+*/
 namespace msr { namespace airlib {
 
 
 class SensorFactory {
 public:
 
+	// 1개 센서 생성
     // creates one sensor from settings
     virtual std::unique_ptr<SensorBase> createSensorFromSettings(
         const AirSimSettings::SensorSetting* sensor_setting) const
@@ -36,6 +40,7 @@ public:
         }
     }
 
+	// sensor collection 생성
     // creates sensor-collection
     virtual void createSensorsFromSettings(
         const std::map<std::string, std::unique_ptr<AirSimSettings::SensorSetting>>& sensors_settings,
@@ -45,6 +50,7 @@ public:
         for (const auto& sensor_setting_pair : sensors_settings) {
             const AirSimSettings::SensorSetting* sensor_setting = sensor_setting_pair.second.get();
 
+			// setting에서 disabled로 된 것은 무시
             // ignore sensors that are marked "disabled" in settings
             if (sensor_setting == nullptr || !sensor_setting->enabled)
                 continue;
