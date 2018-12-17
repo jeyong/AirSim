@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #ifndef airsim_core_World_hpp
@@ -12,6 +12,7 @@
 #include "common/common_utils/ScheduledExecutor.hpp"
 #include "common/ClockFactory.hpp"
 
+// world는 physics engine과 executor로 구성.
 namespace msr { namespace airlib {
 
 class World : public UpdatableContainer<UpdatableObject*> {
@@ -25,6 +26,7 @@ public:
             physics_engine_->clear();
     }
 
+    // updatable interface를 override해서 physics engine을 동기화할 수 있음
     //override updatable interface so we can synchronize physics engine
     //*** Start: UpdatableState implementation ***//
     virtual void reset() override

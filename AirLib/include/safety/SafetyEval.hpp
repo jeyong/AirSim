@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #ifndef air_SafetyEval_hpp
@@ -16,6 +16,7 @@
 
 namespace msr { namespace airlib {
 
+// 이 class는 NEU 좌표로 모든 입출력을 받음
 //this class takes all inputs and outputs in NEU world coordinates in metric system
 class SafetyEval {
 public:
@@ -29,6 +30,7 @@ public:
     //add bitwise operators for enum
     typedef common_utils::EnumFlags<SafetyViolationType_>  SafetyViolationType;
 
+    // 전체 장애물 회피를 비활성화시키기 위해서, SafetyViolationType에서 비활성화
     //to disable obstacle avoidance entirely, disable it in SafetyViolationType
     enum class ObsAvoidanceStrategy : uint {
         RaiseException =        0,    //will return suggested velocity vector = 0
@@ -36,25 +38,35 @@ public:
         OppositeMove        //find closest obstacle free destination along opposite of desired destination
     };
 
+    // safety evaluation의 결과
     //result of the safety evaluation
     struct EvalResult {
+        // is_safe가 true인 경우에는 자료구조에 일부만 정보가 채워져 있을 수 있음. 
         //information in data structure may only be partially filled if is_safe = true
         bool is_safe;
         SafetyViolationType reason;
+        // 현재, 목적지 방향 주위의 장애물 정보, 장애물을 발견하지 못한 경우에는 cur는 evaluation하지 않음.
         //obstacle info around cur and towards dest, if no obs found then cur might not be evaluated
         ObstacleMap::ObstacleInfo cur_obs, dest_obs, suggested_obs;
+        // evaluation하는 동안 고려한 위치
         //locations that were considered while evaluation
         Vector3r cur_pos, dest_pos;
+        // body frame에서 cur를 des vector로 변환
         //transformed cur to destination vector in body frame
         Vector3r cur_dest_body;
         string message;
+        // 장애물 없는 제시한 unit vector, suggestion이 유효하지 않은 경우 반드시 0이여야 한다.
         //suggested unit vector without obstacle, must be zero if no suggestions available
         Vector3r suggested_vec;
+        // risk 거리는 risk 구역이랑 얼마나 떨어져 있는지를 표시. 작은값(<=0)이 큰값보다 낫다
+        // cur는 현재 위치 주변의 risk 거리
+        // desk는 목적지 방향의 risk 거리
         //risk distances indicates how far we are in to risk zone, lower (<= 0) better than higher
         //cur is for risk distance around current position
         //dest if risk distance towards destination
         float cur_risk_dist, dest_risk_dist;
 
+        // 기본 결과를 설정
         //setup default result
         EvalResult()
             :  is_safe(true), reason(SafetyViolationType_::NoSafetyViolation), suggested_vec(Vector3r::Zero()),

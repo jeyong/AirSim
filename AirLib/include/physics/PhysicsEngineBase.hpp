@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #ifndef airsim_core_PhysicsEngineBase_hpp
@@ -28,6 +28,7 @@ public:
         //default nothing to report for physics engine
     }
 
+    // UpdatableContainer로부터 copy-past를 줄이기
     //TODO: reduce copy-past from UpdatableContainer which has same code
     /********************** Container interface **********************/
     typedef PhysicsBody* TUpdatableObjectPtr;
@@ -50,7 +51,7 @@ public:
         members_.erase(std::remove(members_.begin(), members_.end(), obj), members_.end()); }
 
 private:
-    MembersContainer members_;
+    MembersContainer members_; //PhysicsBody들의 container로 여기에는 PhysicsBody의 pointer를 가짐
 };
 
 

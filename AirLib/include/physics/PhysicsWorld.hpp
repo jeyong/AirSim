@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #ifndef airsim_core_PhysicsVehicleWorld_hpp
@@ -92,6 +92,7 @@ public:
     }
 
 private:
+    // world 초기화 (repoter 초기화, world에 bodies 넣기, world를 async로 업데이트 시작)
     void initializeWorld(const std::vector<UpdatableObject*>& bodies, bool start_async_updator)
     {
         reporter_.initialize(false);
@@ -107,6 +108,7 @@ private:
     }
 
 private:
+    // world(bodies를 추가하기), bodies, repoter, update주기
     std::vector<UpdatableObject*> bodies_;
     StateReporterWrapper reporter_;
     World world_;

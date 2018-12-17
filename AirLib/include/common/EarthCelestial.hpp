@@ -1,4 +1,4 @@
-/*
+﻿/*
 Adopted from SunCalc by Vladimir Agafonkin
 https://github.com/mourner/suncalc
 */
