@@ -13,7 +13,7 @@
 #include "common/ClockFactory.hpp"
 
 namespace msr { namespace airlib {
-
+// world는 일종의 container로 구성하여 world에 추가하여 한방에 update 하는 방식!
 class World : public UpdatableContainer<UpdatableObject*> {
 public:
     World(std::unique_ptr<PhysicsEngineBase> physics_engine)

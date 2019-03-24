@@ -92,6 +92,7 @@ public:
     }
 
 private:
+    // world를 초기화할때 body들을 world container에 추가
     void initializeWorld(const std::vector<UpdatableObject*>& bodies, bool start_async_updator)
     {
         reporter_.initialize(false);

@@ -9,7 +9,7 @@
 #include "common/CommonStructs.hpp"
 
 namespace msr { namespace airlib {
-
+// Wrench는 force, torque로 설명 : https://physics.stackexchange.com/questions/298125/understanding-terms-twist-and-wrench
 class PhysicsBodyVertex : public UpdatableObject {
 protected: 
     virtual void setWrench(Wrench& wrench)
@@ -19,6 +19,7 @@ protected:
         //generating vertex
     }
 public:
+    // drag factor : 물이나 공기와 같이 유체 환경에서 움직이는 경우 물체를 당기는 즉 저항값 (단위가 특정되지 않음)
     real_T getDragFactor() const
     {
         return drag_factor_;
@@ -36,6 +37,7 @@ public:
     {
         initialize(position, normal, drag_factor);
     }
+    // 초기화 : position, normal, drag factor
     void initialize(const Vector3r& position, const Vector3r& normal, real_T drag_factor = 0)
     {
         initial_position_ = position;

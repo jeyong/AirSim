@@ -13,10 +13,13 @@
 #include <unordered_set>
 #include <exception>
 
+// twist와 wrench 설명 : https://physics.stackexchange.com/questions/298125/understanding-terms-twist-and-wrench
 namespace msr { namespace airlib {
 
 class PhysicsBody : public UpdatableObject {
 public: //interface
+    // Restitution : 복원
+    // Friction : 마찰
     virtual real_T getRestitution() const = 0;
     virtual real_T getFriction() const = 0;
 
@@ -77,6 +80,7 @@ public: //methods
     {
         initialize(mass, inertia, kinematics, environment);
     }
+    // 초기화 : mass, inertia, kinematics, environment
     void initialize(real_T mass, const Matrix3x3r& inertia, Kinematics* kinematics, Environment* environment)
     {
         mass_ = mass;
@@ -119,6 +123,7 @@ public: //methods
     {
         UpdatableObject::update();
 
+        // 개별 vertex를 업데이트 - 각 vertex가 입력 신호를 받아서 force와 thrust를 생성하여 출력
         //update individual vertices - each vertex takes control signal as input and
         //produces force and thrust as output
         for (uint vertex_index = 0; vertex_index < wrenchVertexCount(); ++vertex_index) {
