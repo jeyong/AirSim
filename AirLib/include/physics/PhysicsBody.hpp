@@ -58,6 +58,7 @@ public: //interface
         collision_info_ = collision_info;
     }
 
+    // kinematics update 부분. state를 먼저 설정하고 update 호출
     virtual void updateKinematics(const Kinematics::State& state)
     {
         if (VectorMath::hasNan(state.twist.linear)) {
@@ -76,6 +77,7 @@ public: //methods
     {
         //allow default constructor with later call for initialize
     }
+    // PhysicsBody 생성자 : mass, inertia, kinamtcis, environment 
     PhysicsBody(real_T mass, const Matrix3x3r& inertia, Kinematics* kinematics, Environment* environment)
     {
         initialize(mass, inertia, kinematics, environment);

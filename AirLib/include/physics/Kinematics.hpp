@@ -9,7 +9,7 @@
 #include "common/CommonStructs.hpp"
 
 namespace msr { namespace airlib {
-
+// state
 class Kinematics : public UpdatableObject {
 public:
     struct State {
@@ -46,6 +46,7 @@ public:
         current_ = initial_;
     }
 
+    // kinematics는 physics engine에서 next state를 update를 수행해야함. 왜? -> 최종 state에서는 충돌 발생 여부와 같이 다른 obj의 상태도 고려해야하니까!!
     virtual void update() override
     {
         UpdatableObject::update();
