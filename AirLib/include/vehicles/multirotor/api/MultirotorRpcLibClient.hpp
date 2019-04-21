@@ -34,6 +34,9 @@ public:
     MultirotorRpcLibClient* moveToPositionAsync(float x, float y, float z, float velocity, float timeout_sec = Utils::max<float>(),
         DrivetrainType drivetrain = DrivetrainType::MaxDegreeOfFreedom, const YawMode& yaw_mode = YawMode(), 
         float lookahead = -1, float adaptive_lookahead = 1, const std::string& vehicle_name = "");
+    MultirotorRpcLibClient* moveToGlobalPositionAsync(float lat, float lon, float height, float velocity, float timeout_sec = Utils::max<float>(),
+        DrivetrainType drivetrain = DrivetrainType::MaxDegreeOfFreedom, const YawMode& yaw_mode = YawMode(), 
+        float lookahead = -1, float adaptive_lookahead = 1, const std::string& vehicle_name = "");
     MultirotorRpcLibClient* moveToZAsync(float z, float velocity, float timeout_sec = Utils::max<float>(),
         const YawMode& yaw_mode = YawMode(), float lookahead = -1, float adaptive_lookahead = 1, const std::string& vehicle_name = "");
     MultirotorRpcLibClient* moveByManualAsync(float vx_max, float vy_max, float z_min, float duration,

@@ -321,6 +321,20 @@ bool MultirotorApiBase::moveToPosition(float x, float y, float z, float velocity
     return moveOnPath(path, velocity, timeout_sec, drivetrain, yaw_mode, lookahead, adaptive_lookahead);
 }
 
+bool MultirotorApiBase::moveToGlobalPosition(float lat, float lon, float height, float velocity, float timeout_sec, DrivetrainType drivetrain,
+    const YawMode& yaw_mode, float lookahead, float adaptive_lookahead)
+{
+    SingleTaskCall lock(this);
+    //ToDo subak
+    //x, y, z = TranslateToLocalPosition(lon, lat);
+    float x, y, z;
+    x = lat; y=lon; z=height;
+    x = y = z = 0.0;
+
+    vector<Vector3r> path{ Vector3r(x, y, z) };
+    return moveOnPath(path, velocity, timeout_sec, drivetrain, yaw_mode, lookahead, adaptive_lookahead);
+}
+
 bool MultirotorApiBase::moveToZ(float z, float velocity, float timeout_sec, const YawMode& yaw_mode,
     float lookahead, float adaptive_lookahead)
 {

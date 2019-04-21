@@ -237,6 +237,8 @@ class VehicleClient:
         raise Exception("moveToZ API is deprecated. Please use moveToZAsync() API." + self.upgrade_api_help)
     def moveToPosition(self, x, y, z, velocity, max_wait_seconds = 60, drivetrain = DrivetrainType.MaxDegreeOfFreedom, yaw_mode = YawMode(), lookahead = -1, adaptive_lookahead = 1):
         raise Exception("moveToPosition API is deprecated. Please use moveToPositionAsync() API." + self.upgrade_api_help)
+    def moveToGlobalPosition(self, lat, lon, height, velocity, max_wait_seconds = 60, drivetrain = DrivetrainType.MaxDegreeOfFreedom, yaw_mode = YawMode(), lookahead = -1, adaptive_lookahead = 1):
+        raise Exception("moveToGlobalPosition API is deprecated. Please use moveToGlobalPositionAsync() API." + self.upgrade_api_help)
     def moveByManual(self, vx_max, vy_max, z_min, duration, drivetrain = DrivetrainType.MaxDegreeOfFreedom, yaw_mode = YawMode()):
         raise Exception("moveByManual API is deprecated. Please use moveByManualAsync() API." + self.upgrade_api_help)
     def rotateToYaw(self, yaw, max_wait_seconds = 60, margin = 5):
@@ -273,6 +275,9 @@ class MultirotorClient(VehicleClient, object):
     def moveToPositionAsync(self, x, y, z, velocity, timeout_sec = 3e+38, drivetrain = DrivetrainType.MaxDegreeOfFreedom, yaw_mode = YawMode(), 
         lookahead = -1, adaptive_lookahead = 1, vehicle_name = ''):
         return self.client.call_async('moveToPosition', x, y, z, velocity, timeout_sec, drivetrain, yaw_mode, lookahead, adaptive_lookahead, vehicle_name)
+    def moveToGlobalPositionAsync(self, lat, lon, height, velocity, timeout_sec = 3e+38, drivetrain = DrivetrainType.MaxDegreeOfFreedom, yaw_mode = YawMode(), 
+        lookahead = -1, adaptive_lookahead = 1, vehicle_name = ''):
+        return self.client.call_async('moveToGlobalPosition', lat, lon, height, velocity, timeout_sec, drivetrain, yaw_mode, lookahead, adaptive_lookahead, vehicle_name)
     def moveToZAsync(self, z, velocity, timeout_sec = 3e+38, yaw_mode = YawMode(), lookahead = -1, adaptive_lookahead = 1, vehicle_name = ''):
         return self.client.call_async('moveToZ', z, velocity, timeout_sec, yaw_mode, lookahead, adaptive_lookahead, vehicle_name)
     def moveByManualAsync(self, vx_max, vy_max, z_min, duration, drivetrain = DrivetrainType.MaxDegreeOfFreedom, yaw_mode = YawMode(), vehicle_name = ''):

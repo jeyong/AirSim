@@ -121,6 +121,14 @@ MultirotorRpcLibClient* MultirotorRpcLibClient::moveToPositionAsync(float x, flo
     return this;
 }
 
+MultirotorRpcLibClient* MultirotorRpcLibClient::moveToGlobalPositionAsync(float lat, float lon, float height, float velocity, float timeout_sec, 
+    DrivetrainType drivetrain, const YawMode& yaw_mode, float lookahead, float adaptive_lookahead, const std::string& vehicle_name)
+{
+    pimpl_->last_future = static_cast<rpc::client*>(getClient())->async_call("moveToGlobalPosition", lat, lon, height, velocity, timeout_sec, 
+        drivetrain, MultirotorRpcLibAdapators::YawMode(yaw_mode), lookahead, adaptive_lookahead, vehicle_name);
+    return this;
+}
+
 MultirotorRpcLibClient* MultirotorRpcLibClient::moveToZAsync(float z, float velocity, float timeout_sec, const 
     YawMode& yaw_mode, float lookahead, float adaptive_lookahead, const std::string& vehicle_name)
 {
