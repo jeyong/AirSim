@@ -10,6 +10,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "common/GeodeticConverter.hpp"
+#include "common/AirSimSettings.hpp"
 
 namespace msr { namespace airlib {
 
@@ -320,16 +322,28 @@ bool MultirotorApiBase::moveToPosition(float x, float y, float z, float velocity
     vector<Vector3r> path{ Vector3r(x, y, z) };
     return moveOnPath(path, velocity, timeout_sec, drivetrain, yaw_mode, lookahead, adaptive_lookahead);
 }
-
-bool MultirotorApiBase::moveToGlobalPosition(float lat, float lon, float height, float velocity, float timeout_sec, DrivetrainType drivetrain,
-    const YawMode& yaw_mode, float lookahead, float adaptive_lookahead)
+bool MultirotorApiBase::moveToGlobalPosition(double lat, double lon, float height, float velocity, float timeout_sec, DrivetrainType drivetrain,
+        const YawMode& yaw_mode, float lookahead, float adaptive_lookahead)
+// bool MultirotorApiBase::moveToGlobalPosition(double lat, double lon, float height, float velocity, float timeout_sec, DrivetrainType drivetrain,
+//     const YawMode& yaw_mode, float lookahead, float adaptive_lookahead)
 {
     SingleTaskCall lock(this);
+    double dx, dy, dz; 
+    auto home_geo = getHomeGeoPoint();
+    //msr::airlib::GeodeticConverter gc(0, 0, 0);
+
+    GeodeticConverter gc(home_geo.latitude, home_geo.longitude, 0);
+    //gc.geodetic2Ned((const double)lat, (const double)lon, (const float)height, &dx, &dy, &dz);
+    gc.geodetic2Ned(lat, lon, height, &dx, &dy, &dz);
+
+// void geodetic2Ned(const double latitude, const double longitude, const float altitude,
+//                     double* north, double* east, double* down)
     //ToDo subak
     //x, y, z = TranslateToLocalPosition(lon, lat);
     float x, y, z;
-    x = lat; y=lon; z=height;
-    x = y = z = 0.0;
+    x = (float)dx;
+    y = (float)dy;
+    z = (float)dz;
 
     vector<Vector3r> path{ Vector3r(x, y, z) };
     return moveOnPath(path, velocity, timeout_sec, drivetrain, yaw_mode, lookahead, adaptive_lookahead);

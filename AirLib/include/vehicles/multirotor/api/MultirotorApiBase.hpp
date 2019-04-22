@@ -89,7 +89,7 @@ public: //these APIs uses above low level APIs
         float lookahead, float adaptive_lookahead);
     virtual bool moveToPosition(float x, float y, float z, float velocity, float timeout_sec, DrivetrainType drivetrain,
         const YawMode& yaw_mode, float lookahead, float adaptive_lookahead);
-    virtual bool moveToGlobalPosition(float lat, float lon, float height, float velocity, float timeout_sec, DrivetrainType drivetrain,
+    virtual bool moveToGlobalPosition(double lat, double lon, float height, float velocity, float timeout_sec, DrivetrainType drivetrain,
         const YawMode& yaw_mode, float lookahead, float adaptive_lookahead);
     virtual bool moveToZ(float z, float velocity, float timeout_sec, const YawMode& yaw_mode,
         float lookahead, float adaptive_lookahead);
